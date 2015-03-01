@@ -1,0 +1,20 @@
+﻿Bootstrapping for A/B testing analyses
+
+
+A/B testing or even its more sophisticated sibling, MVT (multivariate testing), have become synonymous with the term ‘online experiments’. The basic premise of these tests is to compare the performance (according to the tester’s metric of choice) of the treatment group with respect to the control group. For example, testing the effect of a new home page on user conversion. The efficacy (or lack of) of the treatment group is calculated through statistical analyses. These analyses establish whether the chosen metric was (statistically) significantly different in the treatment group. The typical t-test tests if the null hypothesis can be rejected i.e. the difference (in the metric) between the two groups is not equal to zero. 
+-- Describe one and two sample t-tests? -- 
+
+So, if the conversion for the new home page is statistically significant, all that can be really said is that there was an effect. With the t-test, you can only reject that the conversion difference was zero. 
+
+The result of the t-test is a probability: the probability that the difference is zero. The typical probability threshold for rejecting the null hypothesis is p = 0.05. If the test were to be repeated infinitely many times then the results from 5% of the tests would not reject the null hypothesis. 
+
+The dependency of probability on the frequency of events is inherent to the Frequentist school of statistics. And to a Frequentist, the long term frequency of an event is it’s stable occurrence rate and thus, it’s probability. 
+
+Apart from the t-test, other testing frameworks using either Bayesian methods or Bootstrapping are also widely used. In this blog post, we will briefly cover the Bootstrapping for analysing A/B tests. 
+
+Bootstrapping is a well known statistical technique that was first put forward by Bradley Efron, now a Professor Emeritus at Stanford University (c). With bootstrapping, you sample a dataset N times and calculate your metric of interest with each sampled set. Note, they aren’t subsets. The bootstrap sample is a sample with replacement and one that is the same size as the main dataset. Loosely speaking, each sample represents a parallel universe where the same test was repeated. The explicit sampling is also connected to the parallel universe logic of the Frequentist confidence calculations. (c)
+
+
+In our multiverse of bootstrapped samples, the metric of interest now takes the form of a distribution. The differences between the two groups can be taken as the difference in the metric distribution between the 2 groups. And like with the posterior of a Bayesian analysis, any calculations pf probability that the metric is greater than X can be done on the distribution of differences. 
+ 
+
